@@ -216,7 +216,8 @@ def create(config=None, config_file=None, force=False, verbose=True):
     # install management
     lgr.debug('retrieiving management modules code...')
     version = config.get('management_modules_version', 'master')
-    manager_tmp_dir = _get_manager(MANAGER_REPO_URL.format(version), venv)
+    manager_repo_url = config.get('manager_repo_url', MANAGER_REPO_URL)
+    manager_tmp_dir = _get_manager(manager_repo_url.format(version), venv)
 
     lgr.info('installing management modules...')
     for mgmt_module in modules['management'].values():
